@@ -1,0 +1,139 @@
+extends ../layouts/default
+
+block main
+
+  - if (article.tags)
+    h1
+        img(src="/img/Scroll.png" , style='height:32px;' ) 
+        Player Profile
+        - each tag in article.tags.split(',')
+          | &nbsp; - &nbsp;
+          a.tag(href="/tags/"+tag)= tag
+          
+
+
+block content
+  .row
+    .col-md-5
+
+ 
+
+        - if (article.tags)
+          p Nicknames &nbsp;
+            - each tag in article.tags.split(',')
+              i.muted.fa.fa-tag &nbsp;
+              a.tag(href="/tags/"+tag)= tag
+              | &nbsp;&nbsp;
+
+        - if (article.tagsGames)
+          p Games &nbsp;
+            - each tagsGames in article.tagsGames.split(',')
+              i.muted.fa.fa-tag &nbsp;
+              a.tag(href="/tags/"+tagsGames)= tagsGames
+              | &nbsp;&nbsp;
+
+        - if (article.mods)
+          p Mods &nbsp;
+            - each mods in article.mods.split(',')
+              i.muted.fa.fa-tag &nbsp;
+              a.tag(href="/tags/"+mods)= mods
+              | &nbsp;&nbsp;
+
+
+
+
+        - if (article.maps)
+          p Maps &nbsp;
+            - each maps in article.maps.split(',')
+              i.muted.fa.fa-tag &nbsp;
+              a.tag(href="/tags/"+maps)= maps
+              | &nbsp;&nbsp;
+
+        - if (article.clans)
+          p Clans &nbsp;
+            - each clans in article.clans.split(',')
+              i.muted.fa.fa-tag &nbsp;
+              a.tag(href="/tags/"+clans)= clans
+              | &nbsp;&nbsp; 
+
+        - if (article.achievements)
+          p Achievements &nbsp;
+            - each achievements in article.achievements.split(',')
+              i.muted.fa.fa-tag &nbsp;
+              a.tag(href="/tags/"+achievements)= achievements
+              | &nbsp;&nbsp;
+
+        - if (article.competitions)
+          p Mods &nbsp;
+            - each competitions in article.competitions.split(',')
+              i.muted.fa.fa-tag &nbsp;
+              a.tag(href="/tags/"+competitions)= competitions
+              | &nbsp;&nbsp;
+
+        - if (article.platform)
+          p Platform &nbsp;
+            - each platform in article.platform.split(',')
+              i.muted.fa.fa-tag &nbsp;
+              a.tag(href="/tags/"+platform)= platform
+              | &nbsp;&nbsp;
+
+        - if (article.year)
+          p Year &nbsp;
+            - each year in article.year.split(',')
+              i.muted.fa.fa-tag &nbsp;
+              a.tag(href="/tags/"+year)= year
+              | &nbsp;&nbsp;
+
+        - if (article.region)
+          p Region &nbsp;
+            - each region in article.region.split(',')
+              i.muted.fa.fa-tag &nbsp;
+              a.tag(href="/tags/"+region)= region
+              | &nbsp;&nbsp;
+
+        - if (article.country)
+          p Home Country &nbsp;
+            - each country in article.country.split(',')
+              i.muted.fa.fa-tag &nbsp;
+              a.tag(href="/tags/"+country)= country
+              | &nbsp;&nbsp;
+
+        - if (article.sex)
+          p Sex &nbsp;
+            - each sex in article.sex.split(',')
+              i.muted.fa.fa-tag &nbsp;
+              a.tag(href="/tags/"+sex)= sex
+              | &nbsp;&nbsp;
+
+        - if (article.seeking)
+          p Seeking &nbsp;
+            - each seeking in article.seeking.split(',')
+              i.muted.fa.fa-tag &nbsp;
+              a.tag(href="/tags/"+seeking)= seeking
+              | &nbsp;&nbsp;
+  
+
+    p
+    b Gaming Antics
+    p=article.antics
+      .meta    
+
+
+    b Contact Details
+    p=article.contact
+      .meta
+
+        p.muted= formatDate(article.createdAt, "%b %d, %Y at %I:%M %p")
+
+  form(action="/articles/"+article.id, method="post", onsubmit="return confirm('Are you sure?')")
+    input(type='hidden', name='_csrf', value="#{csrf_token}")
+    a.btn.btn-default(href='/articles/'+article._id+'/edit', title="edit") Edit
+    | &nbsp;
+    input(type="hidden", name="_method", value="DELETE")
+    button.btn.btn-danger(type="submit") Delete
+
+  br
+  h3 Comments
+  - each comment in article.comments
+    include ../comments/comment
+  include ../comments/form

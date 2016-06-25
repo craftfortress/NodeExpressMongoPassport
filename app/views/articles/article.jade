@@ -1,0 +1,62 @@
+article.article
+ 
+   
+ 
+  .meta
+
+    div(style='float:right ;height:80px;width:97%;')
+
+      - if (article.user) 
+
+      - if (article.tags)
+        | 
+        span Nickname &nbsp;
+        - each tag in article.tags.split(',')
+          i.muted.fa.fa-tag &nbsp;
+          a.tag(href="/tags/"+tag)= tag
+          | &nbsp;&nbsp;
+
+      - if (article.tagsGames)
+        br
+        span Games &nbsp;
+        - each tagGames in article.tagsGames.split(',')
+          i.muted.fa.fa-tag &nbsp;
+          a.tag(href="/tags/"+tagGames)= tagGames
+          | &nbsp;&nbsp;
+
+       - if (article.competitions)
+        span Mods &nbsp;
+        - each Mods in article.competitions.split(',')
+          i.muted.fa.fa-tag &nbsp;
+          a.tag(href="/tags/"+Mods)= Mods
+          | &nbsp;&nbsp;
+
+
+       - if (article.platform)
+        span Platform &nbsp;
+        - each platform in article.platform.split(',')
+          i.muted.fa.fa-tag &nbsp;
+          a.tag(href="/tags/"+platform)= platform
+          | &nbsp;&nbsp;
+
+
+       - if (article.year)
+        span Year &nbsp;
+        - each year in article.year.split(',')
+          i.muted.fa.fa-tag &nbsp;
+          a.tag(href="/tags/"+year)= year
+          | &nbsp;&nbsp;
+
+
+
+
+      span.muted Posted &nbsp;
+      span.muted= formatDate(article.createdAt)
+          br
+          p= article.antics
+          
+
+    div(style='float:left;margin-left:-5px;width:3%;')
+
+      a(href='/articles/'+article._id, title=article.title)   
+        img(src="/img/Scroll.png" , style='height:15px;margin-bottom:2px;' ) 

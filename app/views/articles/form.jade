@@ -1,0 +1,93 @@
+extends ../layouts/default
+
+block main
+  h1 
+
+block content
+  - var action = '/articles'
+  - action += article.isNew? '' : '/' + article.id
+
+  .row
+    .col-md-8
+      form.form-horizontal(method="post", action=action, enctype="multipart/form-data", role="form")
+
+        input(type="hidden", name="_csrf", value="#{csrf_token}")
+
+        - if (!article.isNew)
+          input(type="hidden", name="_method", value="PUT")
+
+        .form-group
+          label.col-sm-2.control-label(for='tags') Nicknames
+          .col-sm-10
+            input.form-control#tags(type='text', name="tags", value=article.tags, placeholder='Your gamertags / nicknames ( separated by commas ) ')
+
+        .form-group
+          label.col-sm-2.control-label(for='tagsGames') Games
+          .col-sm-10
+            input.form-control#tagsGames(type='text', name="tagsGames", value=article.tagsGames, placeholder='Your Games / Mods ( separated by commas) ')
+ 
+
+        .form-group
+          label.col-sm-2.control-label(for='maps') Maps
+          .col-sm-10
+            input.form-control#maps(type='text', name="maps", class="tagsInput", value=article.maps, placeholder='maps')
+        .form-group
+          label.col-sm-2.control-label(for='clans') Clans
+          .col-sm-10
+            input.form-control#clans(type='text', class="tagsInput", name="clans", value=article.clans, placeholder='clans')
+        .form-group
+          label.col-sm-2.control-label(for='achievements') Achievements
+          .col-sm-10
+            input.form-control#achievements(type='text', name="achievements", class="tagsInput", value=article.achievements, placeholder='achievements')
+        .form-group
+          label.col-sm-2.control-label(for='competitions') Mods
+          .col-sm-10
+            input.form-control#competitions(type='text', name="competitions", class="tagsInput", value=article.competitions, placeholder='competitions')
+
+        .form-group
+          label.col-sm-2.control-label(for='platform') Platform
+          .col-sm-10
+            input.form-control#platform(type='text', name="platform", class="tagsInput", value=article.platform, placeholder='platform ')
+        .form-group
+          label.col-sm-2.control-label(for='year') Year
+          .col-sm-10
+            input.form-control#year(type='text', name="year", class="tagsInput", value=article.year, placeholder='year')
+        .form-group
+          label.col-sm-2.control-label(for='region') Region
+          .col-sm-10
+            input.form-control#region(type='text', name="region", class="tagsInput", value=article.region, placeholder='region ')
+
+        .form-group
+          label.col-sm-2.control-label(for='country') Country
+          .col-sm-10
+            input.form-control#country(type='text', name="country", class="tagsInput", value=article.country, placeholder='country ')
+        .form-group
+          label.col-sm-2.control-label(for='sex') Sex
+          .col-sm-10
+            input.form-control#sex(type='text', name="sex", class="tagsInput", value=article.sex, placeholder='sex ')
+ 
+        .form-group
+          label.col-sm-2.control-label(for='antics') Game Antics
+          .col-sm-10
+            textarea.form-control#antics(rows="5", name="antics",  placeholder="How did you used to play? Eg- I loved being an engineer in TFC the_rock.  Sometimes I would spawn camp in facing_worlds in Unreal Tournament, man that was a good game. I am looking for a player called fadeslayer from Jedi Knight, back from 1998 aswell as spinewire, from CS back from 2002.")=article.antics
+
+        .form-group
+          label.col-sm-2.control-label(for='contact') Contact Prefs
+          .col-sm-10
+            textarea.form-control#desc(rows="5", name="contact",  placeholder="How would you like to be contacted by your old friends? List an anoymous forwarding address / twitter / snapchat / current gamertag for example.")=article.contact
+
+        .form-group
+          label.col-sm-2.control-label(for='seeking') Players you are seeking
+          .col-sm-10
+            input.form-control#region(type='text', name="seeking", class="tagsInput", value=article.seeking, placeholder='seeking ')
+
+      
+
+        .form-group
+          .col-sm-offset-2.col-sm-10
+            button.btn.btn-primary(type='submit') Save to the Player Codex
+            | &nbsp;
+            a.btn(href='/articles', title="cancel") Cancel
+
+    <!--  <!-- .form-group  label.col-sm-2.control-label(for='file') Avatar Image   .col-sm-10   input.form-control#file(type='file', name="image") -->
+.col-md-4 if (!article.isNew && article.image && article.image.files && article.image.files.length)   img(src=article.image.cdnUri + "/mini_" + article.image.files[0]) -->

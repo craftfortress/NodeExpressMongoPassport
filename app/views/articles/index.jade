@@ -1,0 +1,31 @@
+extends ../layouts/default
+
+block main
+  h4 Welcome to playerCodex.xyz
+  small The aim of this project is to become a thorough listing of old online gamers so we maybe reunited with them.
+  br
+  small To get started finding your old gaming buddies, 
+  a(href="/articles/new", title="new article") post your details 
+  and then have a look through your posted tags.  
+  br
+  br
+  
+
+
+
+
+  h4 Latest entries into the Player Codex
+
+block content
+  - if (articles.length)
+    - each article in articles
+      include article
+
+    - if (pages > 1)
+      ul.pagination
+        != createPagination(pages, page)
+  - else
+    h4.muted No articles.&nbsp;
+      a(href="/articles/new") create one
+
+
