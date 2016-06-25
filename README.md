@@ -1,5 +1,5 @@
 # Nodejs Express Mongo Passport authenticated app with sign in used in the creation of PlayerCodex.xyz - a database of old online players.
-
+ 
 ![alt tag](http://i.imgur.com/knXVblp.png)
 
 The demo app is a blog application where users (signing up using facebook, twitter, github and simple registrations) can create an article, delete an article and add comments on the article.
