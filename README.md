@@ -1,9 +1,11 @@
-# Nodejs Express Mongo Passport authenticated app with sign in used in the creation of PlayerCodex.xyz - a database of old online players.
- 
+# Nodejs Express Mongo Passport authenticated app with Social sign in features.  Used in the creation of PlayerCodex.xyz - a database of old online players.
+
 ![alt tag](http://i.imgur.com/knXVblp.png)
 
-The demo app is a blog application where users (signing up using facebook, twitter, github and simple registrations) can create an article, delete an article and add comments on the article.
- 
+This app includes modifications to an appliation which can handle signins via your own custom auth, or by facebook / twitter / github.  (Twitter/local auth is used in the demo). 
+Posts can be created and modified. 
+It includes design changes aswell as the original, great tagging system.
+
 ## Requirements
 
 * [NodeJs](http://nodejs.org) >= 6.x 
@@ -23,7 +25,7 @@ $ npm install
 $ npm test
 ```
 
-This code was originally fored from [here](https://github.com/madhums/node-express-mongoose)
+This code was originally forked from [this great repo](https://github.com/madhums/node-express-mongoose)
 
 ## License
 
